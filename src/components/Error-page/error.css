@@ -1,0 +1,101 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 60px;
+  min-height: calc(100vh - 314px);
+}
+
+.error__info {
+  text-align: center;
+  margin: 50px 0px;
+  font-family: "Inter";
+  font-size: 30px;
+  line-height: 70px;
+}
+
+.error__info span {
+  opacity: 0.3;
+}
+
+.error__info a {
+  text-decoration: none;
+  color: var(--main-color-blue);
+}
+
+.error__info a:hover {
+  text-decoration: underline;
+}
+
+.error__code {
+  color: var(--main-color-blue);
+  display: flex;
+  font-family: "Ferry";
+  font-size: 150px;
+}
+
+.error__span-first {
+  animation: span-first 1.5s ease-in-out infinite;
+}
+
+.error__span-second {
+  animation: span-second 1.5s ease-in-out infinite;
+}
+
+.error__span-third {
+  animation: span-third 1.5s ease-in-out infinite;
+}
+
+@keyframes span-first {
+  0% {
+    transform: translateY(10px);
+  }
+  25% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  75% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes span-second {
+  0% {
+    transform: translateY(10px);
+  }
+  25% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes span-third {
+  0% {
+    transform: translateY(10px);
+  }
+  25% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  75% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}

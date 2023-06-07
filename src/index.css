@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "Ferry";
+  src: url(./assets/fonts/Ferry/ferry.ttf);
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url(./assets/fonts/Inter/inter.ttf);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --main-color-green: #029491;
+  --main-color-light-green: #7ce3e1;
+  --main-color-yellow: #ffb64f;
+  --main-color-blue: #5970ff;
+  --letter-spacing: 0.01em;
+  --transition: all 0.3s ease;
+  --padding: 40px 60px;
+}
+
+* {
+  outline: solid #b0b3ff;
+}

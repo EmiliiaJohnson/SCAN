@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+
+.header-nav {
+  display: flex;
+  width: 20%;
+  justify-content: space-between;
+  & .header-nav__link {
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000;
+  }
+  & .header-nav__link:hover {
+    text-decoration: underline;
+  }
+}

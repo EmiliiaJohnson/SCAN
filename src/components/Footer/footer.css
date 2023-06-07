@@ -1,0 +1,16 @@
+.footer {
+  background-color: var(--main-color-green);
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-info {
+  color: #fff;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  text-align: right;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
