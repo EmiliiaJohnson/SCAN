@@ -9,14 +9,16 @@
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-body {
+body,
+html {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   min-height: 100vh;
-  min-width: 100vh;
-  margin: 0;
-  padding: 0;
+  min-width: 100vw;
 }
 
 :root {
@@ -29,6 +31,8 @@ body {
   --padding: 40px 60px;
 }
 
-* {
-  outline: solid #b0b3ff;
-}
+/* @media (max-width: 1300px) {
+  body {
+    max-width: 100%;
+  }
+} */

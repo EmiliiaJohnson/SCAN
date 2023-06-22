@@ -42,6 +42,7 @@
 
 .tariff-body {
   padding: 30px;
+  position: relative;
 }
 
 .tariff-price__container {
@@ -73,6 +74,7 @@
 
 .tariff-info__loan {
   height: 50px;
+  margin: 10px 0;
 }
 
 .tariff-info__title {
@@ -114,13 +116,53 @@
   box-shadow: none;
 }
 
+.tariff-body__current {
+  border: 2px solid var(--main-color-yellow);
+  border-radius: 0 0 10px 10px;
+}
+
+.tariff-button__current {
+  background-color: #d2d2d2;
+  & a {
+    color: #000;
+  }
+}
+
+.tariff-button__current:hover {
+  box-shadow: #484a586c 3px 3px 0px 1px;
+}
+
+.current {
+  color: #fff;
+  font-size: 14px;
+  padding: 3px 13px;
+  background: #3ba5e0;
+  border-radius: 10px;
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+.current-disabled {
+  display: none;
+}
+
 @media screen and (max-width: 1000px) {
   .tariffs {
     flex-direction: column;
+    margin: 20px 0;
   }
 
   .tariff {
-    width: 90%;
+    width: 100%;
     margin: 20px 0;
+  }
+
+  .tariff-button {
+    margin-top: 30px;
+  }
+
+  .tariff-price {
+    font-size: 23px;
   }
 }

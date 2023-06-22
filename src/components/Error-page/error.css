@@ -9,7 +9,6 @@
 .error__info {
   text-align: center;
   margin: 50px 0px;
-  font-family: "Inter";
   font-size: 30px;
   line-height: 70px;
 }
@@ -97,5 +96,16 @@
   }
   100% {
     transform: translateY(10px);
+  }
+}
+
+@media all and (max-width: 550px) {
+  .error__code {
+    font-size: 100px;
+  }
+
+  .error__info {
+    font-size: 20px;
+    line-height: 30px;
   }
 }

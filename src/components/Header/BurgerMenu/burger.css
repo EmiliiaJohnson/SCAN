@@ -1,0 +1,121 @@
+.burger-button__open {
+  display: none;
+}
+
+@media all and (max-width: 850px) {
+  .burger-button__open {
+    display: flex;
+    background-image: url(../../../assets/images/button-open.svg);
+    width: 30px;
+    height: 25px;
+  }
+
+  .burger-button__close {
+    background-image: url(../../../assets/images/button-close.svg);
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+  }
+
+  .burger-menu {
+    padding: 0 20px 20px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-color-green);
+    z-index: 1;
+  }
+
+  .burger-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .burger-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .burger-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .burger-nav__link {
+    color: #fff;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: var(--letter-spacing);
+    text-decoration: none;
+    margin-bottom: 26px;
+  }
+
+  .burger__not-signed {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .burger__sign-up {
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: var(--letter-spacing);
+    color: #fff;
+    font-weight: 300;
+    opacity: 0.4;
+  }
+
+  .burger__sign-in {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing);
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000;
+    background-color: var(--main-color-light-green);
+    width: 90%;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .burger__user-info {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .burger__user-avatar {
+    width: 64px;
+    height: 64px;
+    margin: 10px;
+  }
+
+  .burger__username {
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 0.08rem;
+  }
+
+  .burger__logout {
+    border: none;
+    font-weight: 300;
+    font-size: 16px;
+    background: transparent;
+    opacity: 0.6;
+    & a {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+}

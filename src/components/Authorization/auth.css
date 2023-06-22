@@ -3,18 +3,38 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 2fr 1fr;
+  min-height: calc(100vh - 394px);
+}
+
+.auth__title {
+  font-family: "Ferry";
+  font-size: 45px;
+  margin-top: 10%;
+  letter-spacing: var(--letter-spacing);
 }
 
 .auth-img {
+  margin-top: 20px;
   margin-left: 20%;
 }
 
-.form {
-  position: relative;
-  padding: 25px;
-  grid-column-start: 2;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
+@media screen and (max-width: 1212px) {
+  .authorization {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    padding: 10px;
+    justify-items: center;
+  }
+
+  .auth__title {
+    width: 90%;
+    font-size: 22px;
+    line-height: 34px;
+  }
+
+  .auth-img {
+    max-width: 80%;
+    margin-left: 0%;
+    margin-top: 50px;
+  }
 }

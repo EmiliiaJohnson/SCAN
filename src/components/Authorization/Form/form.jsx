@@ -1,23 +1,33 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import lock from '../../../assets/images/lock.svg'
-import './form.css'
+import { Link, useNavigate } from "react-router-dom";
+import lock from '../../../assets/images/lock.svg';
+import google from '../../../assets/images/google.svg';
+import facebook from '../../../assets/images/facebook.svg';
+import yandex from '../../../assets/images/yandex.svg';
+import './form.css';
+import store from "../../../store/store";
+import { observer } from "mobx-react-lite";
 
-function Form() {
-    const {
-        register,
-        formState: { errors, isValid },
-        handleSubmit,
-        reset,
-      } = useForm({
+const Form = observer(() =>  {
+
+    const navigate = useNavigate();
+
+    const { register, handleSubmit, reset, formState: { errors, isValid }, } = useForm({
         mode: "onBlur",
-      });
+      });;
+
+    const onSubmit = (data) => {
+        store.setLogin(data.login);
+        store.setPassword(data.password);
+        store.getToken(); 
+        reset();
+    }
 
     return (
-        <form action="submit">
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <img className="form-img__lock" src = { lock }  alt = "" />
-            <div>
+            <div className="form-links">
                 <button className="form-link">
                     <Link to= "/auth">Войти</Link>
                 </button>
@@ -25,26 +35,44 @@ function Form() {
                     <Link to= "/error">Зарегистрироваться</Link>
                 </button>
             </div>
-            <label className="form-label">
-                Логин или номер телефона:
+             <label className="form-label">
+             {store.isAuthError ? 'Неправильный логин или номер телефона (sf_student1)' : 'Логин или номер телефона: (sf_student1)'}
                 <input
-                    name="login"
-                    className="form-input" 
-                    type="text" 
-                    required
+                    {...register("login", {
+                        required: true,
+                    })}
+                    className = { errors?.login ? "form-input form-input__invalid" : "form-input" }
+                    type="text"
                  />
-                </label>
-            <label className="form-label">
-                Пароль:
-                <input 
-                    name="password"
-                    className="form-input" 
-                    type="password" 
-                    required
-                />
+                {errors?.login && <p className="error-message">Введите корректные данные</p>}
             </label>
+            <label className="form-label">
+            {store.isAuthError ? 'Неправильный пароль (4i2385j)' : 'Пароль: (4i2385j)'}
+                <input 
+                    {...register("password", {
+                        required: true,
+                    })}
+                    className = { errors?.password ? "form-input form-input__invalid" : "form-input" }
+                    type="password"
+                    autoComplete="on"
+                />
+                {errors?.password && <p className="error-message">Неправильный пароль</p>}
+            </label>
+            {store.isLoading ? 
+                <button disabled={!isValid} className="form-button__submit" type="submit">
+                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                </button> :
+                <button disabled={!isValid} className="form-button__submit" type="submit">Войти</button>} 
+            {store.token && navigate("/")}
+            <Link className="repare-password" to= "/error">Восстановить пароль</Link>
+            <p className="sign-with">Войти через:</p>
+            <div className="sign-socials">
+                <Link to="https://google.com" target="_blank"><img src={google} alt="" /></Link>
+                <Link to="https://facebook.com" target="_blank"><img src={facebook} alt="" /></Link>  
+                <Link to="https://yandex.ru" target="_blank"><img src={yandex} alt="" /></Link>     
+            </div>
         </form>
     )
-}
+})
 
 export default Form;

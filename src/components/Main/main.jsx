@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import './main.css';
+import store from "../../store/store";
 import service from '../../assets/images/service.svg';
 import SimpleSlider from "./Slider/slider";
 import Tariff from "./Tariffs/tariff";
+import { observer } from "mobx-react-lite";
 
-function Main() {
+const Main = observer(() => {
 
     return (
 <div className="main">
@@ -14,19 +16,19 @@ function Main() {
             <h1 className="search-service__title">
                 сервис по поиску публикаций <br />
                 о компании <br />
-                по его ИНН <br />
+                по ее ИНН <br />
             </h1>
             <div className="search-service__mobile">
                 <p className="search-service__info">
                     Комплексный анализ публикаций, получение данных в формате PDF на электронную почту.
                 </p>
                 <button className="search-service__request-button">
-                    <Link to= "/search">Запросить данные</Link>
+                    {store.token ? <Link to= "/search">Запросить данные</Link> : <Link to= "/auth">Войти</Link>}
                 </button>
             </div>
         </div>
         <div className="search-service__img">
-            <img src= { service } alt="main page" />
+            <img className="image" src= { service } alt="main page" />
         </div>
     </section>
     <section className="why-we">
@@ -34,12 +36,12 @@ function Main() {
         <div> <SimpleSlider /></div>
         <div className="why-we__img"></div>
     </section>
-    <section>
+    <section id="tariffs">
     <h2 className="h2__title">наши тарифы</h2>
         <Tariff />
     </section>
 </div>
     )
-}
+})
 
 export default Main;

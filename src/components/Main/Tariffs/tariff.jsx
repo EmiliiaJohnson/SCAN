@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { observer } from "mobx-react-lite";
 import './tariff.css';
 import beginner from '../../../assets/images/beginner.svg';
 import pro from '../../../assets/images/pro.svg';
 import business from '../../../assets/images/business.svg';
-import checkpoint from '../../../assets/images/checkpoint.svg'
+import checkpoint from '../../../assets/images/checkpoint.svg';
+import store from "../../../store/store";
 
-function Tariff() {
+const Tariff = observer(() => {
+    useEffect(() => {
+        store.checkToken();
+      }, []);
+
     const tariff = [
         {
             styleObj: {
@@ -64,14 +70,15 @@ function Tariff() {
  
     let res = tariff.map(function(item) {
        return <div className="tariff" key={item.id}>
-        <div className="tariff-header"  style={item.styleObj}>
+        <div className="tariff-header" style={item.styleObj}>
             <div className="tariff-header__info">
                 <h3 className="tariff-title">{item.title}</h3>
                 <p className="tariff-description">{item.description}</p>
             </div>
             <img alt='' src={item.image} />
         </div>
-        <div className="tariff-body">
+        <div className={store.token && item.id === 1 ? "tariff-body tariff-body__current" : "tariff-body"}>
+            <span className={store.token && item.id === 1 ? "current" : "current-disabled"}>Текущий тариф</span>
             <div className="tariff-price__container">
                 <p className="tariff-price">{item.price}</p>
                 <p className="tariff-price tariff-price__discount">{item.discount}</p>
@@ -81,14 +88,16 @@ function Tariff() {
             <li className="tariff-info"><img className="tariff-info__check" src={checkpoint} alt="" />{item.details.detail1}</li>
             <li className="tariff-info"><img className="tariff-info__check" src={checkpoint} alt="" />{item.details.detail2}</li>
             <li className="tariff-info"><img className="tariff-info__check" src={checkpoint} alt="" />{item.details.detail3}</li>
-            <button className="tariff-button"><Link to= "/error">Подробнее</Link></button>
+            <button className= {store.token && item.id === 1 ? "tariff-button tariff-button__current" : "tariff-button"}>
+                <Link to= "/error">{store.token && item.id === 1 ? 'Перейти в личный кабинет' : 'Подробнее'}</Link>
+            </button>
         </div>
        </div>;
     });
- 
+
     return <div className="tariffs">
         {res}
     </div>;
-}
+})
 
 export default Tariff;

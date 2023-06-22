@@ -15,7 +15,7 @@ export default function SimpleSlider() {
     infinite: true,
     speed: 400,
     slidesToShow: 3,
-    // autoplay: true,
+    autoplay: true,
     autoplaySpeed: 5000,
     slidesToScroll: 1,
 

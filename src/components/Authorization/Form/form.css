@@ -1,17 +1,36 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 25px;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  justify-content: space-between;
+}
+
 .form-img__lock {
   position: absolute;
   top: -50px;
   left: -48px;
 }
 
+.form-links {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .form-link {
-  font-family: "Inter";
   border: none;
   background-color: #fff;
   font-size: 16px;
   line-height: 19px;
   letter-spacing: 0.02em;
-  padding: 8px 39px;
+  padding: 8px 10%;
   margin: 0px 10px 40px;
   color: var(--main-color-green);
   border-bottom: 2px solid var(--main-color-green);
@@ -33,12 +52,13 @@
 .form-label {
   display: flex;
   flex-direction: column;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+  width: 90%;
   margin-bottom: 15px;
   font-size: 16px;
   line-height: 19px;
   letter-spacing: 0.02em;
   color: #949494;
+  position: relative;
 }
 
 .form-input {
@@ -47,12 +67,178 @@
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   margin: 15px 0;
-  font-family: "Inter";
   font-size: 16px;
-  letter-spacing: 0.01em;
+  letter-spacing: var(--letter-spacing);
   padding: 0 20px;
 }
 
 .form-input:focus {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
   outline: 2px solid var(--main-color-green);
+  border: none;
+}
+
+.form-input__invalid {
+  box-shadow: 0px 0px 20px rgba(255, 89, 89, 0.2);
+  border: 1px solid #ff5959;
+}
+
+.form-input__invalid:focus {
+  border: none;
+}
+
+.error-message {
+  font-size: 14px;
+  letter-spacing: var(--letter-spacing);
+  color: #ff5959;
+  position: absolute;
+  top: 86%;
+  align-self: center;
+}
+
+.form-button__submit {
+  font-size: 22px;
+  letter-spacing: var(--letter-spacing);
+  height: 60px;
+  color: #fff;
+  border: none;
+  background: var(--main-color-blue);
+  border-radius: 5px;
+  width: 90%;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.form-button__submit:disabled,
+.form-button__submit:disabled:hover {
+  transform: none;
+  box-shadow: none;
+  cursor: default;
+  opacity: 0.7;
+}
+
+.form-button__submit:hover {
+  transform: scale(1.03);
+  box-shadow: #596fff6c 3px 3px 0px 1px;
+}
+
+.form-button__submit:active {
+  transform: scale(1);
+  box-shadow: none;
+}
+
+.repare-password {
+  font-size: 14px;
+  letter-spacing: var(--letter-spacing);
+  color: var(--main-color-blue);
+  margin-top: 15px;
+}
+
+.sign-with {
+  font-size: 16px;
+  letter-spacing: var(--letter-spacing);
+  color: #949494;
+  align-self: flex-start;
+  margin: 20px 0;
+}
+
+.sign-socials {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-self: flex-start;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 25px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.5s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.5s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.5s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.5s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+@media screen and (max-width: 1212px) {
+  .form {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    margin-top: 100px;
+  }
+
+  .form-img__lock {
+    top: -74px;
+    left: 30%;
+  }
+
+  .form-link {
+    margin: 0px 10px 10px;
+    padding: 8px 5px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .auth__title {
+    width: 85%;
+  }
+  .form {
+    max-width: 83%;
+  }
+
+  .sign-with {
+    align-self: center;
+  }
+
+  .sign-socials {
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    align-self: center;
+  }
 }

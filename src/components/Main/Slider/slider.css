@@ -23,7 +23,6 @@
 }
 
 .slider-info {
-  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -46,4 +45,20 @@
 
 .slick-prev {
   background: url("../../../assets/images/arrow-left.svg") !important;
+}
+
+@media all and (max-width: 550px) {
+  .slick-slider {
+    width: 97%;
+    margin: 30px 0;
+  }
+  .slick-slide {
+    height: 100% !important;
+  }
+  .slick-prev {
+    left: -12px !important;
+  }
+  .slick-next {
+    right: -20px !important;
+  }
 }

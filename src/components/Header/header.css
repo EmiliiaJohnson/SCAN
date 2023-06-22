@@ -10,12 +10,27 @@
   width: 20%;
   justify-content: space-between;
   & .header-nav__link {
-    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-size: 14px;
     text-decoration: none;
     color: #000;
   }
   & .header-nav__link:hover {
     text-decoration: underline;
+  }
+}
+
+@media (max-width: 850px) {
+  .header-nav {
+    display: none;
+  }
+}
+
+@media all and (max-width: 550px) {
+  .header {
+    padding: 10px;
+  }
+
+  .header-logo {
+    width: 80px;
   }
 }

@@ -1,0 +1,53 @@
+.not-signed {
+  display: flex;
+  align-items: center;
+}
+
+.sign-up {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: var(--letter-spacing);
+  color: #000;
+  opacity: 0.4;
+  text-decoration: none;
+}
+
+.sign-up:hover {
+  text-decoration: underline;
+}
+
+.line {
+  width: 2px;
+  height: 26px;
+  background-color: var(--main-color-green);
+  margin: 0 20px;
+}
+
+.sign-in {
+  font-size: 14px;
+  letter-spacing: var(--letter-spacing);
+  padding: 4px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #000;
+  background-color: var(--main-color-light-green);
+  transition: var(--transition);
+}
+
+.sign-in:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 20px #8799b571;
+}
+
+.sign-in:active {
+  transform: scale(1);
+}
+
+@media (max-width: 850px) {
+  .not-signed {
+    display: none;
+  }
+}
