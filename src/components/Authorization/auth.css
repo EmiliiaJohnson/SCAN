@@ -3,7 +3,6 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 2fr 1fr;
-  min-height: calc(100vh - 394px);
 }
 
 .auth__title {

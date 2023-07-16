@@ -1,0 +1,22 @@
+.slider-titles {
+  background-color: var(--main-color-green);
+  padding: 17px 27px;
+  border-radius: 10px 0px 0px 10px;
+  width: fit-content;
+  color: #fff;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.summary-slider {
+  border-radius: 0px 10px 10px 0px;
+  border: 2px solid #029491;
+}
+
+.slider-item {
+  display: flex !important;
+  align-items: center;
+  flex-direction: column;
+}

@@ -1,0 +1,200 @@
+.search-form {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 30px 40px;
+  margin-top: 50px;
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+}
+
+.search-form__inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-form__label {
+  display: flex;
+  flex-direction: column;
+  width: 91%;
+  font-size: 18px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.search-form__input {
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #c7c7c7;
+  background: #fff;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+  padding: 13px;
+  letter-spacing: 0.03em;
+  margin: 20px 0;
+}
+
+select {
+  cursor: pointer;
+}
+
+.search-form__input::placeholder {
+  text-align: center;
+}
+
+.search-form__input:focus {
+  outline: 2px solid var(--main-color-green);
+}
+
+.search-form__input-invalid {
+  box-shadow: 0px 0px 20px rgba(255, 89, 89, 0.2);
+  border: 1px solid #ff5959;
+}
+
+.search-form__input-invalid:focus {
+  border: none;
+}
+
+.search-form__error-message {
+  font-size: 14px;
+  letter-spacing: var(--letter-spacing);
+  color: #ff5959;
+  position: absolute;
+  top: 92%;
+  align-self: center;
+}
+
+.date-picker__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-picker {
+  display: flex;
+}
+
+.date-picker__label {
+  display: flex;
+  flex-direction: column;
+}
+
+.required-info {
+  color: #949494;
+  font-size: 14px;
+  letter-spacing: var(--letter-spacing);
+  margin-top: 10px;
+}
+
+.dates {
+  width: 90%;
+  margin: 0;
+}
+
+.search-form__checks,
+.search-form__checks-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.search-form__check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.checks-label {
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+input[type="checkbox"] {
+  opacity: 0.4;
+  margin-right: 20px;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #000;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:hover {
+  background-color: #e8e8e8;
+}
+
+input[type="checkbox"]:checked::after {
+  display: flex;
+  justify-content: center;
+  content: "\2714";
+  color: #00a100;
+}
+
+input[type="checkbox"]:checked + label {
+  opacity: 1;
+}
+
+input[type="checkbox"]:checked {
+  opacity: 1;
+}
+
+.search-form__button {
+  align-self: flex-end;
+  width: 300px;
+}
+
+@media screen and (max-width: 1212px) {
+  .search-form {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .search-form__button {
+    width: 100%;
+    margin-top: 25px;
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .search-form__checks {
+    display: none;
+  }
+
+  .search-form__inputs,
+  .search-form__label {
+    width: 100%;
+  }
+
+  .date-picker__label {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .search-title {
+    font-size: 30px;
+    width: 100%;
+  }
+  .search-body {
+    flex-direction: column;
+  }
+
+  .search-form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .search-title {
+    font-size: 25px;
+  }
+
+  .date-picker {
+    flex-direction: column;
+  }
+
+  .date-picker__label {
+    width: 100%;
+  }
+}
