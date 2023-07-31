@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import "./error.css";
 
 function Error() {
-  document.title = "Scan - error";
-
   return (
     <div className="error">
       <div className="error__code">

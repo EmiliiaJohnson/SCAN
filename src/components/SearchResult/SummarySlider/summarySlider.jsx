@@ -9,99 +9,106 @@ import Loader from "../../Loader/loader";
 let settings = {
   dots: false,
   infinite: false,
-  speed: 400,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-
+  slidesToShow: 8,
+  slidesToScroll: 3,
   responsive: [
     {
       breakpoint: 1200,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 6,
+        slidesToScroll: 2,
       },
     },
     {
-      breakpoint: 870,
+      breakpoint: 1000,
+      settings: {
+        slidesToShow: 5,
+        slidesToScroll: 2,
+      },
+    },
+
+    {
+      breakpoint: 940,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 2,
+      },
+    },
+
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 550,
       settings: {
         slidesToShow: 1,
+        slidesToScroll: 1,
       },
     },
   ],
 };
-const titles = ["Период", "Всего", "Риски"];
-
-// const datesMap = new Map();
-// const totalMap = new Map();
-// const risksMap = new Map();
-
-let date = store.summaryDates;
-let total = store.summaryTotal;
-let risks = store.summaryRisks;
-
-// date.forEach((element, index) => {
-//   datesMap.set(index, element);
-// });
-
-// total.forEach((element, index) => {
-//   totalMap.set(index, element);
-// });
-
-// risks.forEach((element, index) => {
-//   risksMap.set(index, element);
-// });
 
 const SimpleSlider = () => {
+  let date = store.summaryResult.data.data[0].data.map((item) =>
+    item.date
+      .substring(0, 10)
+      .split("-")
+      .join(".")
+      .split(".")
+      .reverse()
+      .join(".")
+  );
+  let total = store.summaryResult.data.data[0].data.map((item) => item.value);
+  let risks = store.summaryResult.data.data[1].data.map((item) => item.value);
+
+  store.setSummaryDates(date);
+  store.setSummaryTotal(total);
+  store.setSummaryRisks(risks);
+  store.setSummaryAll(
+    store.summaryTotal.reduce((a, b) => {
+      return a + b;
+    }) +
+      store.summaryRisks.reduce((a, b) => {
+        return a + b;
+      })
+  );
+
   return (
     <div>
-      <div className="slider-titles">
-        {titles.map((title) => (
-          <div>
-            <p key={title}>{title}</p>
-          </div>
-        ))}
-      </div>
-      {store.isLoading ? (
-        <div>
+      {store.isSummaryLoading === true ? (
+        <div className="slider-loader">
           <Loader />
-          <p>Загружаем данные</p>
+          <p className="loading-data">Загружаем данные</p>
         </div>
       ) : (
-        <Slider className="summary-slider" {...settings}>
-          {date.map((value, index) => (
-            <div className="slider-item" id={index}>
-              <div> {date[index]} </div>
-              <div> {total[index]} </div>
-              <div> {risks[index]} </div>
-              {/* <div> {datesMap.get(index)} </div> */}
-              {/* <div> {totalMap.get(index)} </div>
-              <div> {risksMap.get(index)} </div> */}
+        <>
+          <h3 className="summary-title">Общая сводка</h3>
+          <p className="summary-all">Найдено {store.summaryAll} вариантов</p>
+          <div className="slider-wrapper">
+            <div className="slider-titles">
+              <p>Период</p>
+              <p>Всего</p>
+              <p>Риски</p>
             </div>
-          ))}
-        </Slider>
+            <Slider className="summary-slider" {...settings}>
+              {date &&
+                date.map((el, index) => (
+                  <div className="slider-item" id={index}>
+                    <p> {store.summaryDates[index]} </p>
+                    <p> {store.summaryTotal[index]} </p>
+                    <p> {store.summaryRisks[index]} </p>
+                  </div>
+                ))}
+            </Slider>
+          </div>
+        </>
       )}
     </div>
   );
-
-  //   return (
-  //     <div>
-  //       <div>
-  //         {titles.map((title) => (
-  //           <div>
-  //             <p key={title}>{title}</p>
-  //           </div>
-  //         ))}
-  //       </div>
-  //       <Slider {...settings}>
-  //         {date.map((element, index) => (
-  //           <div className="slider-item" id={index}>
-  //             <p> {datesMap.get(index)} </p>
-  //             <p> {totalMap.get(index)} </p>
-  //             <p> {risksMap.get(index)} </p>
-  //           </div>
-  //         ))}
-  //       </Slider>
-  //     </div>
-  //   );
 };
 
 export default SimpleSlider;

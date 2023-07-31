@@ -29,7 +29,7 @@ const Header = observer(() => {
           FAQ
         </Link>
       </nav>
-      {store.token !== "" ? <Signed /> : <NotSigned />}
+      {store.token ? <Signed /> : <NotSigned />}
       <BurgerMenu />
     </header>
   );

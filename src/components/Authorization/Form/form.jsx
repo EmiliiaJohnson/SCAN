@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import lock from "../../../assets/images/lock.svg";
@@ -11,6 +11,10 @@ import { observer } from "mobx-react-lite";
 
 const Form = observer(() => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    store.token && navigate("/");
+  });
 
   const {
     register,
@@ -34,7 +38,6 @@ const Form = observer(() => {
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      {store.token && navigate("/")}
       <img className="form-img__lock" src={lock} alt="" />
       <div className="form-links">
         <button className="form-link">
@@ -83,7 +86,7 @@ const Form = observer(() => {
           className="form-button__submit"
           type="submit"
         >
-          <div class="lds-ellipsis">
+          <div className="lds-ellipsis">
             <div></div>
             <div></div>
             <div></div>

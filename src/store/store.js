@@ -47,6 +47,16 @@ class Store {
     this.isCompaniesLoading = bool;
   };
 
+  isSummaryLoading = false;
+  setSummaryLoading = (bool) => {
+    this.isSummaryLoading = bool;
+  };
+
+  isDocumentLoading = false;
+  setDocumentLoading = (bool) => {
+    this.isDocumentLoading = bool;
+  };
+
   companiesInfo = { used: 0, limit: 0 };
   setCompanyLimits = (used, limit) => {
     this.companiesInfo.used = used;
@@ -78,6 +88,11 @@ class Store {
     this.endDate = date;
   };
 
+  summaryResult;
+  setSummaryResult = (result) => {
+    this.summaryResult = result;
+  };
+
   summaryDates = [];
   setSummaryDates = (dates) => {
     this.summaryDates = dates;
@@ -93,9 +108,24 @@ class Store {
     this.summaryRisks = risks;
   };
 
+  summaryAll = 0;
+  setSummaryAll = (all) => {
+    this.summaryAll = all;
+  };
+
   isSummaryError = false;
   setSummaryError = (bool) => {
     this.isSummaryError = bool;
+  };
+
+  IDs = {};
+  setIDs = (id) => {
+    this.IDs = id;
+  };
+
+  document = [];
+  setDocument = (doc) => {
+    this.document = doc;
   };
 
   searchFormChecks = {
@@ -107,13 +137,13 @@ class Store {
     isAnnouncement: false,
     isNews: false,
   };
+
   setSearchFormChecks = (type) => {
     switch (type) {
       case "isFullness":
         this.searchFormChecks.isFullness
           ? (this.searchFormChecks.isFullness = false)
           : (this.searchFormChecks.isFullness = true);
-        console.log(this.searchFormChecks.isFullness);
         break;
       case "isBusiness":
         this.searchFormChecks.isBusiness
@@ -148,6 +178,16 @@ class Store {
       default:
         break;
     }
+  };
+
+  resetSearchFormChecks = () => {
+    this.searchFormChecks.isFullness = false;
+    this.searchFormChecks.isBusiness = false;
+    this.searchFormChecks.isMainRole = false;
+    this.searchFormChecks.isRisksOnly = false;
+    this.searchFormChecks.isTechNews = false;
+    this.searchFormChecks.isAnnouncement = false;
+    this.searchFormChecks.isNews = false;
   };
 
   getToken = () => {
@@ -185,8 +225,9 @@ class Store {
     ) {
       this.setToken(localStorage.getItem("token"));
       return;
+    } else {
+      localStorage.clear();
     }
-    localStorage.clear();
   };
 
   getCompaniesInfo = () => {
@@ -210,7 +251,7 @@ class Store {
   };
 
   getHistograms = () => {
-    this.setLoading(true);
+    this.setSummaryLoading(true);
     axios
       .post(API + `/api/v1/objectsearch/histograms`, {
         issueDateInterval: {
@@ -268,30 +309,121 @@ class Store {
         histogramTypes: ["totalDocuments", "riskFactors"],
       })
       .then((response) => {
-        this.setLoading(false);
-        this.setSummaryError(false);
-        this.setSummaryDates(
-          response.data.data[0].data.map((item) =>
-            item.date
-              .substring(0, 10)
-              .split("-")
-              .join(".")
-              .split(".")
-              .reverse()
-              .join(".")
-          )
-        );
-        this.setSummaryTotal(
-          response.data.data[0].data.map((item) => item.value)
-        );
-        this.setSummaryRisks(
-          response.data.data[1].data.map((item) => item.value)
-        );
+        this.setSummaryResult(response);
+        if (
+          this.summaryResult.status === 200 &&
+          this.summaryResult.data.data !== [] &&
+          this.summaryResult.data.data !== undefined &&
+          this.summaryResult.data.data.length !== 0
+        ) {
+          this.setSummaryLoading(false);
+        } else {
+          this.setSummaryError(true);
+          this.setSummaryLoading(false);
+        }
       })
       .catch((err) => {
         this.setSummaryError(true);
         console.log(err);
-        this.setLoading(false);
+        this.setSummaryLoading(false);
+      });
+  };
+
+  getIDs = () => {
+    axios
+      .post(API + `/api/v1/objectsearch`, {
+        issueDateInterval: {
+          startDate: this.startDate,
+          endDate: this.endDate,
+        },
+        searchContext: {
+          targetSearchEntitiesContext: {
+            targetSearchEntities: [
+              {
+                type: "company",
+                sparkId: null,
+                entityId: null,
+                inn: this.inn,
+                maxFullness: this.searchFormChecks.isFullness,
+                inBusinessNews: this.searchFormChecks.isBusiness,
+              },
+            ],
+            onlyMainRole: this.searchFormChecks.isMainRole,
+            tonality: this.tonality,
+            onlyWithRiskFactors: this.searchFormChecks.isRisksOnly,
+            riskFactors: {
+              and: [],
+              or: [],
+              not: [],
+            },
+            themes: {
+              and: [],
+              or: [],
+              not: [],
+            },
+          },
+          themesFilter: {
+            and: [],
+            or: [],
+            not: [],
+          },
+        },
+        searchArea: {
+          includedSources: [],
+          excludedSources: [],
+          includedSourceGroups: [],
+          excludedSourceGroups: [],
+        },
+        attributeFilters: {
+          excludeTechNews: this.searchFormChecks.isTechNews,
+          excludeAnnouncements: this.searchFormChecks.isAnnouncement,
+          excludeDigests: this.searchFormChecks.isNews,
+        },
+        similarMode: "duplicates",
+        limit: this.limit,
+        sortType: "issueDate",
+        sortDirectionType: "desc",
+        intervalType: "month",
+        histogramTypes: ["totalDocuments", "riskFactors"],
+      })
+      .then((response) => {
+        let docID = [];
+        response.data.items.map((id) => {
+          return docID.push(id.encodedId);
+        });
+        this.setIDs(docID);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  getFirstDocuments = () => {
+    axios
+      .post(API + `/api/v1/documents`, {
+        ids: this.IDs,
+      })
+      .then((response) => {
+        this.setDocument(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  getNextDocuments = (next) => {
+    this.setDocumentLoading(true);
+    axios
+      .post(API + `/api/v1/documents`, {
+        ids: next,
+      })
+      .then((response) => {
+        this.setDocument([...this.document, ...response.data]);
+        this.setDocumentLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setDocumentLoading(false);
       });
   };
 }

@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "html-entities": "^2.4.0",
     "latest-version": "^7.0.0",
     "mobx": "^6.9.0",
     "mobx-react-lite": "^3.4.3",
@@ -19,6 +20,7 @@
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
+    "react-xml-parser": "^1.1.8",
     "slick-carousel": "^1.8.1",
     "use-mask-input": "^3.2.0",
     "web-vitals": "^2.1.4"

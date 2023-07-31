@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./searchForm.css";
 import store from "../../../store/store";
 import { useNavigate } from "react-router-dom";
@@ -10,32 +10,38 @@ import "react-datepicker/dist/react-datepicker.css";
 const SearchForm = observer(() => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    !store.token && navigate("/auth");
+  });
+
+  useEffect(() => {
+    store.resetSearchFormChecks();
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
-    defaultValues: {
-      inn: "7710137066",
-    },
   });
 
   const onSubmit = (data) => {
+    store.setSummaryError(false);
     store.setInn(data.inn);
     store.setLimit(data.limit);
     store.getHistograms();
-    // store.getPublishIds();
+    store.setDocument([]);
+    store.setIDs({});
+    store.getIDs();
     navigate("/result");
   };
 
   return (
     <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
-      {!store.token && navigate("/auth")}
       <div className="search-form__inputs">
         <label className="search-form__label">
-          {" "}
-          ИНН компании * 7721546864
+          ИНН компании * 7736050003
           <input
             className={
               errors?.inn
@@ -81,7 +87,6 @@ const SearchForm = observer(() => {
           </select>
         </label>
         <label className="search-form__label">
-          {" "}
           Количество документов в выдаче *
           <input
             type="number"

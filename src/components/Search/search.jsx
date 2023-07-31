@@ -6,7 +6,7 @@ import folders from "../../assets/images/folders.svg";
 import SearchForm from "./SearchForm/searchForm";
 import { observer } from "mobx-react-lite";
 
-function Search() {
+const Search = observer(() => {
   return (
     <div className="search">
       <h1 className="search-title">
@@ -26,6 +26,6 @@ function Search() {
       </div>
     </div>
   );
-}
+});
 
 export default Search;

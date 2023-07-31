@@ -143,6 +143,10 @@ input[type="checkbox"]:checked {
   width: 300px;
 }
 
+.search-loader {
+  height: 55px;
+}
+
 @media screen and (max-width: 1212px) {
   .search-form {
     flex-direction: column;
@@ -153,6 +157,9 @@ input[type="checkbox"]:checked {
     width: 100%;
     margin-top: 25px;
     align-self: center;
+  }
+  .form-button__submit {
+    width: 100%;
   }
 }
 
@@ -196,5 +203,6 @@ input[type="checkbox"]:checked {
 
   .date-picker__label {
     width: 100%;
+    margin-bottom: 10px;
   }
 }

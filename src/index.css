@@ -30,9 +30,3 @@ html {
   --transition: all 0.3s ease;
   --padding: 40px 60px;
 }
-
-/* @media (max-width: 1300px) {
-  body {
-    max-width: 100%;
-  }
-} */

@@ -7,7 +7,7 @@ import avatar from "../../../assets/images/user-icon-mobile.svg";
 import store from "../../../store/store";
 
 const BurgerMenu = observer(() => {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setActive] = useState(false);
 
   const login = localStorage.getItem("login");
 
@@ -17,7 +17,7 @@ const BurgerMenu = observer(() => {
   }, []);
 
   return (
-    <div className="burger-button__open" onClick={() => setIsActive(true)}>
+    <div className="burger-button__open" onClick={() => setActive(true)}>
       {isActive ? (
         <div className="burger-menu">
           <div className="burger-top">
@@ -26,7 +26,7 @@ const BurgerMenu = observer(() => {
               className="burger-button__close"
               onClick={(e) => {
                 e.stopPropagation();
-                setIsActive(false);
+                setActive(false);
               }}
             ></button>
           </div>

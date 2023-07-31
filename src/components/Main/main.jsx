@@ -40,7 +40,6 @@ const Main = observer(() => {
       <section className="why-we">
         <h2 className="h2__title">Почему именно мы</h2>
         <div>
-          {" "}
           <SimpleSlider />
         </div>
         <div className="why-we__img"></div>

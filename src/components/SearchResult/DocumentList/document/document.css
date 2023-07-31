@@ -1,0 +1,124 @@
+.document {
+  width: 47%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  padding: 20px 30px;
+  margin: 0 20px 40px;
+  display: grid;
+}
+
+.document-top {
+  display: flex;
+}
+
+.issue-date {
+  color: #949494;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  margin-right: 15px;
+  a {
+    text-decoration: underline;
+  }
+}
+
+.document__title-tag {
+  position: relative;
+}
+
+.document-title {
+  color: #000;
+  font-family: Inter;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 0.52px;
+  margin: 25px 0;
+}
+
+.document-tag {
+  position: absolute;
+  border-radius: 5px;
+  background: var(--main-color-yellow);
+  font-size: 12px;
+  letter-spacing: 0.24px;
+  text-align: center;
+  padding: 4px 15px;
+  bottom: -8px;
+}
+
+.announcement {
+  color: #fff;
+  background: var(--main-color-blue);
+}
+
+.digest {
+  color: #fff;
+  background: var(--main-color-green);
+}
+
+.document-img {
+  margin: 20px 0;
+  object-fit: cover;
+  width: 100%;
+  height: 158px;
+  border-radius: 10px;
+}
+
+.document-content {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  opacity: 0.5;
+  height: 255px;
+  overflow: hidden;
+}
+
+.document-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 30px;
+}
+
+.document-link {
+  border-radius: 5px;
+  background: var(--main-color-light-green);
+  padding: 15px 30px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  text-decoration: none;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.document-link:hover {
+  transform: scale(1.03);
+  box-shadow: #4bcdcb 3px 3px 0px 1px;
+}
+
+@media all and (max-width: 940px) {
+  .document {
+    width: 90%;
+    padding: 10px 15px;
+  }
+
+  .document-title {
+    font-size: 20px;
+  }
+
+  .document-link {
+    padding: 5px 20px;
+    margin-right: 30px;
+  }
+  .document-img {
+    margin: 10px 0;
+  }
+
+  .document-tag {
+    bottom: -3px;
+  }
+}
