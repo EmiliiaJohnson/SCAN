@@ -24,6 +24,9 @@ const SearchForm = observer(() => {
     formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
+    defaultValues: {
+      inn: "7736050003",
+    },
   });
 
   const onSubmit = (data) => {
@@ -41,7 +44,7 @@ const SearchForm = observer(() => {
     <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="search-form__inputs">
         <label className="search-form__label">
-          ИНН компании * 7736050003
+          ИНН компании *
           <input
             className={
               errors?.inn
