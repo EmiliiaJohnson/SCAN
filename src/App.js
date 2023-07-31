@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="*" element={<Main />} />
           <Route path="/error" element={<Error />} />
           <Route path="/auth" element={<Authorization />} />
           <Route path="/search" element={<Search />} />
