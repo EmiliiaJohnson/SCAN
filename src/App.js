@@ -8,17 +8,23 @@ import Search from "./components/Search/search";
 import SearchResult from "./components/SearchResult/searchResult";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+const routesData = [
+  { path: "*", element: <Main /> },
+  { path: "/error", element: <Error /> },
+  { path: "/auth", element: <Authorization /> },
+  { path: "/search", element: <Search /> },
+  { path: "/result", element: <SearchResult /> },
+];
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="*" element={<Main />} />
-          <Route path="/error" element={<Error />} />
-          <Route path="/auth" element={<Authorization />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/result" element={<SearchResult />} />
+          {routesData.map((route, index) => (
+            <Route key={index} path={route.path} element={route.element} />
+          ))}
         </Routes>
         <Footer />
       </BrowserRouter>

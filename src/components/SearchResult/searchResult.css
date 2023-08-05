@@ -1,6 +1,6 @@
 .search-result {
   padding: var(--padding);
-  min-height: calc(100vh - 234px);
+  /* min-height: calc(100vh - 234px); */
 }
 
 .search-result__title {
