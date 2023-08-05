@@ -21,11 +21,13 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-        <Routes>
-          {routesData.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
-        </Routes>
+        <main>
+          <Routes>
+            {routesData.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
+            ))}
+          </Routes>
+        </main>
         <Footer />
       </BrowserRouter>
     </div>
